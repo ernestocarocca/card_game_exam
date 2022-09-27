@@ -1,0 +1,2 @@
+class start_cardGame {
+}
