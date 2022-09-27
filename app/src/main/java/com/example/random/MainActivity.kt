@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity() {
             imageView.setImageResource(newCard.image)
         }
 
-
+//hej
         offButton.setOnClickListener{
 
             scoreResult = points
