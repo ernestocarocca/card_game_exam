@@ -2,12 +2,13 @@ package com.example.random
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import kotlin.math.absoluteValue
 
 lateinit var scoreView : TextView
-lateinit var click :TextView
+lateinit var click1 :TextView
 class Newactivity : AppCompatActivity() {
 
 
@@ -15,13 +16,17 @@ class Newactivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newactivity)
         scoreView = findViewById(R.id.pointsView)
-        click = findViewById(R.id.clickCountView)
+        click1 = findViewById(R.id.clickCountView)
 
 
-        var score  = intent.getIntExtra("scoreResult", 0 )
-       var guess=  intent.getIntExtra("clickcount", 0)
-        scoreView.text= "Total Score ${score}"
-        click.text = "Total quess ${guess}"
+        val score = intent.getIntExtra("scoreResult", 0 )
+      var click  =  intent.getIntExtra("clickcount", 0)
+        var score2 = intent.getDoubleExtra("score",0.0)
+
+        scoreView.text= "SCORE $score "
+        click1.text= "Success rate ${score2.toInt()} %"
+
+
 
     }
 

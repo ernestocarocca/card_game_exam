@@ -1,14 +1,13 @@
 package com.example.random
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +17,15 @@ class MainActivity : AppCompatActivity() {
     var scoreResult = 0
     var clickcount = 0
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        fun onRestart(){
+        val  startIntent = Intent(this, MainActivityfirstside::class.java)
+        startActivity(startIntent)}
 
         val deck = mutableListOf<Card>()
         var daimond2 = Card(R.drawable.diamond2, 2, "Diamond")
@@ -152,6 +156,10 @@ class MainActivity : AppCompatActivity() {
         deck.add(spades_a)
 
 
+        var next = Intent(this, MainActivityfirstside::class.java)
+        startActivity(next)
+
+
         val imageView = findViewById<ImageView>(R.id.imageView2)
         scoreView = findViewById(R.id.scoreView)
         resultView = findViewById(R.id.resultView)
@@ -188,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         button_lower.setOnClickListener {
             newCard = deck[random()]
             clickcount++
-            Log.d("!!", "heej ${points}  hej  ${clickcount}")
+
             if (currentCard.value > newCard.value) {
                 points++
                 scoreView.text = "SCORE :$points "
@@ -202,20 +210,21 @@ class MainActivity : AppCompatActivity() {
             imageView.setImageResource(newCard.image)
         }
 
-//hej
+//hej hej
         offButton.setOnClickListener{
 
             scoreResult = points
 
 
-            Log.d("!!!","$scoreResult")
-
-
             val intent = Intent(this, Newactivity::class.java)
 
-            val score = scoreResult.toDouble() / clickcount.toDouble()
-            intent.putExtra("scoreResult", scoreResult)
+
+
+           intent.putExtra("scoreResult", scoreResult)
             intent.putExtra("clickcount", clickcount)
+            var score = scoreResult.toDouble()/clickcount.toDouble()*100
+
+            intent.putExtra("score", score)
 
             startActivity(intent)
         }
