@@ -11,23 +11,22 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    var points =0
+    var points = 0
     lateinit var scoreView: TextView
     lateinit var resultView: TextView
     var scoreResult = 0
     var clickcount = 0
+    var minus = 1
+    lateinit var deck: MutableList<Card>
 
 
-
-//hej
+    //hej
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fun onRestart(){
-        val  startIntent = Intent(this, MainActivityfirstside::class.java)
-        startActivity(startIntent)}
 
-        val deck = mutableListOf<Card>()
+
+        deck = mutableListOf()
         var daimond2 = Card(R.drawable.diamond2, 2, "Diamond")
         var daimond3 = Card(R.drawable.diamond3, 3, "Diamond")
         var daimond4 = Card(R.drawable.diamond4, 4, "Diamond")
@@ -70,10 +69,6 @@ class MainActivity : AppCompatActivity() {
         var heartk = Card(R.drawable.heartk, 13, "heart")
         var hearta = Card(R.drawable.hearta, 14, "heart")
 
-        var joker1 = Card(R.drawable.joker_1, 100, "joker")
-        var joker2 = Card(R.drawable.joker_2, 101, "joker")
-        var joker3 = Card(R.drawable.joker_3, 1003, "joker")
-        var joker4 = Card(R.drawable.joker_4, 1004, "joker")
 
         var spades_2 = Card(R.drawable.spades2, 2, "spades")
         var spades_3 = Card(R.drawable.spades3, 3, "spades")
@@ -136,10 +131,7 @@ class MainActivity : AppCompatActivity() {
         deck.add(hearta)
 
 
-        deck.add(joker1)
-        deck.add(joker2)
-        deck.add(joker3)
-        deck.add(joker4)
+
 
         deck.add(spades_2)
         deck.add(spades_3)
@@ -156,9 +148,8 @@ class MainActivity : AppCompatActivity() {
         deck.add(spades_a)
 
 
-        var next = Intent(this, MainActivityfirstside::class.java)
-        startActivity(next)
-
+        val startIntent = Intent(this, MainActivityfirstside::class.java)
+        startActivity(startIntent)
 
         val imageView = findViewById<ImageView>(R.id.imageView2)
         scoreView = findViewById(R.id.scoreView)
@@ -175,16 +166,25 @@ class MainActivity : AppCompatActivity() {
         button_higher.setOnClickListener {
             newCard = deck[random()]
             clickcount++
-            Log.d("!!", "heej ${points}  hej  ${clickcount}")
+
             if (currentCard.value < newCard.value) {
                 points++
                 scoreView.text = "SCORE : $points"
                 resultView.text = "YOU GUESSED RIGHT "
 
 
-            } else {
-                resultView.text = "YOU GUESSED WRONG"
+            }
+            else {
+                if (points >= 1) {
 
+
+                    points = points - minus
+                    if (points >= 0) {
+                        scoreView.text = "SCORE: $points"
+                        resultView.text = "YOU GUESSED WRONG"
+                    }
+
+                }
             }
 
             currentCard = newCard
@@ -201,17 +201,24 @@ class MainActivity : AppCompatActivity() {
                 points++
                 scoreView.text = "SCORE :$points "
                 resultView.text = "YOU GUESSED RIGHT "
-            }
-            else {
-                resultView.text = "YOU GUESSED WRONG"
+            } else {
+                if (points >= 1) {
+
+                    points = points - minus
+                    if (points >= 0) {
+                        scoreView.text = "SCORE: $points"
+                        resultView.text = "YOU GUESSED WRONG"
+                    }
+
+                }
             }
 
             currentCard = newCard
             imageView.setImageResource(newCard.image)
         }
 
-//hej hej
-        offButton.setOnClickListener{
+
+        offButton.setOnClickListener {
 
             scoreResult = points
 
@@ -220,9 +227,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-           intent.putExtra("scoreResult", scoreResult)
+            intent.putExtra("scoreResult", scoreResult)
             intent.putExtra("clickcount", clickcount)
-            var score = scoreResult.toDouble()/clickcount.toDouble()*100
+            var score = scoreResult.toDouble() / clickcount.toDouble() * 100
 
             intent.putExtra("score", score)
 
@@ -233,10 +240,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun random(): Int {
-        var RandomCard = (0..55).random()
+        var RandomCard = (0 until deck.size).random()
         return RandomCard
-    }
 
+
+    }
 
 }
 
