@@ -226,7 +226,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Newactivity::class.java)
 
 
-//hej
+
             intent.putExtra("scoreResult", scoreResult)
             intent.putExtra("clickcount", clickcount)
             var score = scoreResult.toDouble() / clickcount.toDouble() * 100
