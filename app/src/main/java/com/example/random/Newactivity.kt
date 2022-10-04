@@ -17,12 +17,12 @@ class Newactivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_newactivity)
-        scoreView = findViewById(R.id.pointsView)
+
         var button = findViewById<Button>(R.id.restartButton)
 
 
 
-        scoreView.text= "YOU WIN!! "
+
 
         button.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)

@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">random</string>
-    <string name="first_side_text">För att få poäng ska du gissa rätt värde på nästa kort, för ett
-        högre värde klicka HIGHER lägre klicka LOWER </string>
+    <string name="first_side_text">För att få poäng ska du gissa rätt värde
+        på nästa kort, för ett
+        högre värde klicka HIGHER lägre klicka LOWER.
+        För att vinna behöver du få 3 poäng</string>
 
 
     <string name="start_game">START</string>

@@ -70,6 +70,7 @@
         android:layout_height="66dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/almendra_bold"
+        android:gravity="center"
         android:shadowColor="#070707"
         android:textColor="#F80000"
         android:textSize="34sp"
